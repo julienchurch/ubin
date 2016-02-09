@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function link {
+  if [ "$1" ]; then
+    if [ ! -f "$HOME/lib/$1/$1" ]; then
+      echo "That package doesn't exist! Check $HOME/lib for available packages."
+    else
+      ln -s $HOME/lib/$1/$1 $HOME/bin/$1 
+      echo "Package linked!"
+    fi
+  else
+    echo "Please provide a package to link."
+  fi
+}
+
+if [ "$1" == "link" ]; then
+  link $2
+elif [ "$1" == "" ]; then
+  echo "Available commands: link"
+else
+  echo "That command doesn't exist. Available commands: link"
+fi
